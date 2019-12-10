@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
+use App\Modules\Inventory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,11 +22,11 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -33,9 +35,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStoreRequest $request)
     {
-        //
+        $product = new Product;
+        $product->name = $request->name;
+        $product->price = $request->price;
+
+        if ($product->save()) {
+            (new Inventory($product, $request->qty))->store();
+        }
     }
 
     /**
