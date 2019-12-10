@@ -37,13 +37,7 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        $product = new Product;
-        $product->name = $request->name;
-        $product->price = $request->price;
-
-        if ($product->save()) {
-            (new Inventory($product, $request->qty))->store();
-        }
+        $product = Product::create($request->all());
     }
 
     /**
