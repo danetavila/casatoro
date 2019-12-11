@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Inventory;
+use App\Http\Requests\InventoryStoreRequest;
+use App\Models\Product;
+use App\Modules\Inventory;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -24,7 +26,8 @@ class InventoryController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::get();
+        return view('inventory.create',compact('products'));
     }
 
     /**
@@ -33,9 +36,11 @@ class InventoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InventoryStoreRequest $request)
     {
         //
+        $product=Product::find(request()->get('product_id'));
+        (new Inventory($product, (int) request()->get('qty')))->store();
     }
 
     /**

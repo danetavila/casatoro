@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaleStoreRequest;
 use App\Models\Sale;
+use App\Models\Product;
+use App\Modules\Inventory;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -24,7 +27,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::get();
+        return view('sales.create',compact('products'));
+
     }
 
     /**
@@ -33,9 +38,9 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaleStoreRequest $request)
     {
-        //
+        $sale = Sale::create($request->all());
     }
 
     /**

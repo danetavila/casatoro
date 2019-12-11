@@ -5,7 +5,7 @@ namespace App\Observers;
 use App\Models\Product;
 use App\Modules\Inventory;
 
-class InventoryCreated
+class ProductCreated
 {
     public function __construct(Product $product)
     {

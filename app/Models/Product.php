@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Observers\InventoryCreated;
+use App\Observers\ProductCreated;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -18,6 +18,6 @@ class Product extends Model
      * @var array
      */
     protected $dispatchesEvents = [
-        'created' => InventoryCreated::class
+        'created' => ProductCreated::class
     ];
 }

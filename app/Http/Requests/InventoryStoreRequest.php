@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\TheQuantityProductMustNotExceedAvailable;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductStoreRequest extends FormRequest
+class InventoryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,8 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //'product_id' => 'required|numeric',
-            'name' => 'required|string',
-            'price' => 'required|numeric',
-            'qty' => ['nullable', 'numeric', 'min:0', new TheQuantityProductMustNotExceedAvailable()],
+            'product_id' => 'required|numeric',
+            'qty' => ['required', 'numeric', 'min:1', new TheQuantityProductMustNotExceedAvailable()],
         ];
     }
 
@@ -36,10 +34,10 @@ class ProductStoreRequest extends FormRequest
     {
         return [
             'product_id.required' => 'El producto es requerido.',
-            'name.required' => 'El nombre del producto es requerido.',
-            'price.required' => 'El precio del producto es requerido.',
+            'product_id.numeric' => 'El valor del producto debe ser de tipo numérico.',
+            'qty.required' => 'La cantidad del producto es requerida.',
             'qty.numeric' => 'La cantidad del producto debe ser de tipo numérico.',
-            'qty.min' => 'La cantidad debe ser mayor o igual a 0.',
+            'qty.min' => 'La cantidad debe ser mayor a 0.',
         ];
     }
 }

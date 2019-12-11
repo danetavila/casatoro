@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('products', 'ProductController');
+Route::resource('inventory', 'InventoryController');
+Route::resource('sales', 'SaleController');
 
 Route::get('test', function () {
 
@@ -30,7 +32,7 @@ Route::get('test', function () {
 
     $position="";
 
-    $inventory = \App\Models\Inventory::whereNull('sale_id')
+    $inventory  = \App\Models\Inventory::whereNull('sale_id')
         ->orderByDesc('position')
         ->get();
 
