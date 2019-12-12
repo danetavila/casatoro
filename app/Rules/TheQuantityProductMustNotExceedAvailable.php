@@ -19,7 +19,8 @@ class TheQuantityProductMustNotExceedAvailable implements Rule
      */
     public function __construct()
     {
-        $this->available = (env('POSITIONS') - Inventory::whereNull('sale_id')->count());
+        $cant=Inventory::whereNull('sale_id')->count();
+        $this->available = (env('POSITIONS') -  $cant);
     }
 
     /**
@@ -31,7 +32,7 @@ class TheQuantityProductMustNotExceedAvailable implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $value < $this->available;
+        return $value <= $this->available;
     }
 
     /**
@@ -41,6 +42,6 @@ class TheQuantityProductMustNotExceedAvailable implements Rule
      */
     public function message()
     {
-        return "Solo quedan disponible {$this->available} posiciones.";
+        return "Solo quedan {$this->available} posiciones disponible para ingresar en el inventario.";
     }
 }

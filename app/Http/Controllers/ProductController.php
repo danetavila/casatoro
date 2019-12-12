@@ -38,6 +38,10 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         $product = Product::create($request->all());
+        if($product){
+            return redirect('products/create')->with('alert-success', 'El producto fue creado exitosamente');
+        }
+
     }
 
     /**

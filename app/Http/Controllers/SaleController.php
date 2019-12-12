@@ -17,7 +17,13 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $data=array
+        (
+            'products' => Product::get(),
+            'sales' => Sale::get(),
+        );
+
+        return view('sales.index',compact('data'));
     }
 
     /**
@@ -41,6 +47,9 @@ class SaleController extends Controller
     public function store(SaleStoreRequest $request)
     {
         $sale = Sale::create($request->all());
+        if($sale){
+            return redirect('sales/create')->with('alert-success', 'La factura se generó exitosamente');
+        }
     }
 
     /**

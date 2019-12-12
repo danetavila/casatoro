@@ -41,6 +41,9 @@ class InventoryController extends Controller
         //
         $product=Product::find(request()->get('product_id'));
         (new Inventory($product, (int) request()->get('qty')))->store();
+        if($product){
+            return redirect('inventory/create')->with('alert-success', 'El Inventario fue creado exitosamente');
+        }
     }
 
     /**

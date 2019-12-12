@@ -9,13 +9,33 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
-    <div class="container">
-        @yield('content')
+    <div id="menu">
+        <header class="major">
+            <h2>Menu</h2>
+        </header>
+        <nav>
+            <ul>
+                <li class="active"><a href="{{route('products.create')}}">Inicio</a></li>
+                <li><a href="{{route('products.create')}}">Producto</a></li>
+                <li><a href="{{route('inventory.create')}}">Inventario</a></li>
+                <li><a href="{{route('sales.create')}}">Facturar</a></li>
+                <li><a href="#">Reportes</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="wrapper">
+        <div class="container">
+            <section>
+                @yield('content')
+            </section>
+        </div>
     </div>
 </div>
+
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
