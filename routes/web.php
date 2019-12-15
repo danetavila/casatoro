@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('products', 'ProductController');
+
+Route::get('inventory/stock','InventoryController@currentInventory');
 Route::resource('inventory', 'InventoryController');
 Route::resource('sales', 'SaleController');
 

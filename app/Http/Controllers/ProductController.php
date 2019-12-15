@@ -88,4 +88,7 @@ class ProductController extends Controller
     {
         //
     }
+    public function getAllProducts(){
+        return Product::all();
+    }
 }

@@ -17,11 +17,9 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $data=array
-        (
-            'products' => Product::get(),
-            'sales' => Sale::get(),
-        );
+        $data = Sale::with(['product', 'inventories' => function ($q) {
+            $q->whereNotNull('sale_id');
+        }])->get();
 
         return view('sales.index',compact('data'));
     }

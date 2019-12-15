@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InventoryStoreRequest;
 use App\Models\Product;
 use App\Modules\Inventory;
+use App\Models\Inventory as InventoryModel;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -16,7 +17,9 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        $inventory= InventoryModel::with('product')->whereNull('sale_id')->orderBy('position')->get();
+        
+        return view('inventory.index',compact('inventory'));
     }
 
     /**
@@ -89,5 +92,10 @@ class InventoryController extends Controller
     public function destroy(Inventory $inventory)
     {
         //
+    }
+
+    public function currentInventory()
+    {
+        return InventoryModel::with('product')->whereNull('sale_id')->orderBy('position')->get();
     }
 }

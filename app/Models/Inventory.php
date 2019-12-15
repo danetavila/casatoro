@@ -12,4 +12,9 @@ class Inventory extends Model
     protected $fillable = [
         'position', 'product_id', 'sale_id'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -20,4 +20,14 @@ class Sale extends Model
     protected $dispatchesEvents = [
         'created' => SaleCreated::class
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
 }

@@ -70,10 +70,10 @@ header.major > :last-child {
     text-decoration: none;
 }
 #menu a:hover{
-    color: red;
+    color: #e05854;
 }
 #menu ul li.active{
-    color: red;
+    color: #e05854;
 }
 .invoice{
     padding: 5% 0 5% 0;
@@ -87,4 +87,12 @@ header.major > :last-child {
 }
 .products th td{
     font-weight: 600;
+}
+
+.table.inventory td{
+    background-color: #61d061;    
+}
+
+.table td.occupied{
+    background-color: #e05854;
 }

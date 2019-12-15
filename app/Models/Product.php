@@ -20,4 +20,9 @@ class Product extends Model
     protected $dispatchesEvents = [
         'created' => ProductCreated::class
     ];
+
+    public function inventories()
+    {
+        return $this->hasMany(Inventory::class);
+    }
 }
