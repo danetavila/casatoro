@@ -1,4 +1,6 @@
-#Tomar en cuenta en el archivo .env colocar la variable POSITIONS=20. para la Base de Datos correr las migraciones de laravel.
+## Prueba-CasaToro
+<p> Sistema de inventario y facturación realizado con laravel y Vuejs como prueba de ingreso.</p>
+<p> Tomar en cuenta en el archivo .env colocar la variable POSITIONS=20. para la Base de Datos correr las migraciones de laravel.</p>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
