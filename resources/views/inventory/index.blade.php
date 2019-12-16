@@ -5,6 +5,10 @@
     <div class="col-md-12 table-responsive" >
         <table class="table table-bordered inventory ">
             <tr>
+                <td rowspan="7" class="wall rotate">PARED FONDO</td>
+                <td colspan="4" class="wall">PARED</td>
+            </tr>
+            <tr>
                 <td @click="selectCurrentProduct(occupied(1))" :class="{occupied:occupied(1)}"><position-component pos="1" :product="occupied(1)"></position-component></td>
                 <td @click="selectCurrentProduct(occupied(6))" :class="{occupied:occupied(6)}"><position-component pos="6" :product="occupied(6)"></position-component></td>
                 <td @click="selectCurrentProduct(occupied(11))" :class="{occupied:occupied(11)}"><position-component pos="11" :product="occupied(11)"></position-component></td>
@@ -34,19 +38,27 @@
                 <td @click="selectCurrentProduct(occupied(15))" :class="{occupied:occupied(15)}"><position-component pos="15" :product="occupied(15)"></position-component></td>
                 <td @click="selectCurrentProduct(occupied(20))" :class="{occupied:occupied(20)}"><position-component pos="20" :product="occupied(20)"></position-component></td>
             </tr>
+            <tr>
+                <td colspan="4" class="wall">PARED</td>
+            </tr>
         </table>
-    </div>
+    </div>   
     <position-details-component :product="currentProduct" />
 </div>
 @endsection
 @push('scripts')
     <script>
         Vue.component('position-details-component', {
-            template: `<div>
-                    <div v-if="product">
-                        <span>@{{ product.product.name }}</span>
+            template: `<div class="col-4 align-self-center" v-if="product">
+            <h2 class="text-center">Detalle de la Posición</h2>
+                    <div class="invoice" >
+                        <span><b>Producto:</b> @{{ product.product.name }}</span>
                         <br>
-                        <span>Precio: @{{ product.product.price }}</span>
+                        <span><b>Precio:</b> @{{ product.product.price }}</span>
+                        <br>
+                        <span><b>Posición:</b> @{{ product.position }}</span>
+                        <br>
+                        <span><b>Fecha Inventario:</b> @{{ product.created_at }}</span>
                     </div>
                 </div>`,
             props: ['product'],
@@ -66,8 +78,8 @@
         Vue.component('position-component', {
             template: `<div>
                     <span>@{{ pos }}</span>
-                    <span v-if="product">@{{ ": " + product.product.name }}</span>
-                    <span v-else>: Disponible</span>
+                    <span v-if="product">@{{":" + product.product.name }}</span>
+                    <span v-else>:Disponible</span>
                 </div>`,
             props: ['pos', 'product'],
             data() {

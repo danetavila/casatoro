@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success">Agregar</button>
+                <button type="submit" class="btn btn-success">Facturar</button>
                 <a class="btn btn-secondary" href="{{ url('/') }}">Cancelar</a>
             </form>
         </div>

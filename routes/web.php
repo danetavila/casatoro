@@ -10,20 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('sales/index');
+});*/
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'SaleController@index')->name('sale');
+
+//Route::get('/sales', 'SaleController@index')->name('sale');
 
 Route::resource('products', 'ProductController');
 
 Route::get('inventory/stock','InventoryController@currentInventory');
 Route::resource('inventory', 'InventoryController');
 Route::resource('sales', 'SaleController');
+Route::resource('report', 'ReportController');
 
 Route::get('test', function () {
 

@@ -46,7 +46,7 @@ class SaleController extends Controller
     {
         $sale = Sale::create($request->all());
         if($sale){
-            return redirect('sales/create')->with('alert-success', 'La factura se generó exitosamente');
+            return redirect('sales')->with('alert-success', 'La factura se generó exitosamente');
         }
     }
 
